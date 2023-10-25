@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FORCEN_Projet.iml" filepath="$PROJECT_DIR$/.idea/FORCEN_Projet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mangane-wks-gest-immo-bf688963fce9/gestion-immobliere.iml" filepath="$PROJECT_DIR$/mangane-wks-gest-immo-bf688963fce9/gestion-immobliere.iml" />
     </modules>
   </component>
 </project>
