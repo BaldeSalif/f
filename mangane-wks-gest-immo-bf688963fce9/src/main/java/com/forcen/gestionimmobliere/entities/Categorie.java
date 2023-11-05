@@ -17,7 +17,6 @@ public class Categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
-
     @OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY)
     List<Bien> biens;
 
