@@ -2,6 +2,7 @@ package com.forcen.gestionimmobliere.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class Utilisateur implements Serializable {
@@ -19,7 +21,7 @@ public class Utilisateur implements Serializable {
     private  String prenom;
     private String nom;
     private  String adresse;
-    private  String telephone;
+    private  int telephone;
 
     @OneToMany(mappedBy = "utilisateur" , fetch = FetchType.LAZY)
     List<Commande> commandes;

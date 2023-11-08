@@ -1,17 +1,18 @@
 package com.forcen.gestionimmobliere.entities;
 
-import com.forcen.gestionimmobliere.entities.enums.Etat;
+import com.forcen.gestionimmobliere.enums.Etat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class Commande  implements Serializable {
