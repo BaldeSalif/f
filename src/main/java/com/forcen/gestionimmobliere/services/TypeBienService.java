@@ -9,7 +9,9 @@ public interface TypeBienService {
     public TypeBienDTO saveTypeBien(TypeBienDTO typeBienDTO);
 
     TypeBienDTO updateTypeBien(TypeBienDTO typeBienDTO);
+
     void deleteTypeBien(TypeBienDTO typeBienDTO);
+
     TypeBienDTO findById( Long id);
 
     List<TypeBienDTO> findAll();

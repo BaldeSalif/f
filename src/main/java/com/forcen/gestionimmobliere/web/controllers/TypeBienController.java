@@ -30,14 +30,12 @@ public class TypeBienController {
     }
     @PostMapping("/")
     public TypeBienDTO saveTypeBien( @RequestBody TypeBienDTO typeBienDTO){
-        TypeBienDTO savetypeBienDTO = typeBienService.saveTypeBien(typeBienDTO);
-        return savetypeBienDTO;
+        return typeBienService.saveTypeBien(typeBienDTO);
     }
     @PutMapping("/{id}")
     public TypeBienDTO updateTypeBien(@PathVariable Long id, @RequestBody TypeBienDTO typeBienDTO){
         return typeBienService.updateTypeBien(new TypeBienDTO(id,typeBienDTO.libelle()));
     }
-
     @DeleteMapping("/")
     public void deleteTypeBien(@RequestBody TypeBienDTO typeBienDTO){
          typeBienService.deleteTypeBien(typeBienDTO);
