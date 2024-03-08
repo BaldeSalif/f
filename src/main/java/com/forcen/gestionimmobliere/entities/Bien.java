@@ -3,6 +3,7 @@ package com.forcen.gestionimmobliere.entities;
 import com.forcen.gestionimmobliere.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bien  implements Serializable {
@@ -34,6 +36,7 @@ public class Bien  implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idTypeBien" , nullable = true,referencedColumnName = "id")
-    private  Type_Bien typeBien;
+    private  TypeBien typeBien;
+
 
 }

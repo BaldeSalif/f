@@ -16,12 +16,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Type_Bien implements Serializable {
+public class TypeBien implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private String libelle;
 
     @OneToMany(mappedBy = "typeBien", fetch = FetchType.LAZY)
-    List<Bien> biens;
+    private List<Bien> biens;
 }
