@@ -8,12 +8,12 @@ public interface TypeBienService {
 
     public TypeBienDTO saveTypeBien(TypeBienDTO typeBienDTO);
 
-    TypeBienDTO updateTypeBien(TypeBienDTO typeBienDTO);
+    public TypeBienDTO updateTypeBien(TypeBienDTO typeBienDTO);
 
-    void deleteTypeBien(TypeBienDTO typeBienDTO);
+    public String deleteTypeBien(Long id);
 
-    TypeBienDTO findById( Long id);
+    public TypeBienDTO findById( Long id);
 
-    List<TypeBienDTO> findAll();
+    public List<TypeBienDTO> findAll();
 
 }

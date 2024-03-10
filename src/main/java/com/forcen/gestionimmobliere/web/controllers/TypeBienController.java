@@ -1,6 +1,5 @@
 package com.forcen.gestionimmobliere.web.controllers;
 
-
 import com.forcen.gestionimmobliere.services.TypeBienService;
 import com.forcen.gestionimmobliere.web.dtos.TypeBienDTO;
 import lombok.AllArgsConstructor;
@@ -14,12 +13,10 @@ import java.util.List;
 @CrossOrigin("*")
 public class TypeBienController {
     private TypeBienService typeBienService;
-
     @GetMapping("/hello")
     public String text(){
         return "hello";
     }
-
     @GetMapping("/")
     public List<TypeBienDTO> getAllTypeBien(){
         return typeBienService.findAll();
@@ -36,8 +33,9 @@ public class TypeBienController {
     public TypeBienDTO updateTypeBien(@PathVariable Long id, @RequestBody TypeBienDTO typeBienDTO){
         return typeBienService.updateTypeBien(new TypeBienDTO(id,typeBienDTO.libelle()));
     }
-    @DeleteMapping("/")
-    public void deleteTypeBien(@RequestBody TypeBienDTO typeBienDTO){
-         typeBienService.deleteTypeBien(typeBienDTO);
+    @DeleteMapping("/{id}")
+    public String deleteTypeBien(@PathVariable Long id){
+         return typeBienService.deleteTypeBien(id);
     }
 }
+

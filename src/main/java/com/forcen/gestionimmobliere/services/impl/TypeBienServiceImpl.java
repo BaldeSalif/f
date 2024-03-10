@@ -9,14 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 @Service
 @AllArgsConstructor
 public class TypeBienServiceImpl implements TypeBienService {
 
-    TypeBienRepository typeBienRepository;
+    private TypeBienRepository typeBienRepository;
     @Override
     public TypeBienDTO saveTypeBien(TypeBienDTO typeBienDTO) {
         TypeBien typeBien = new TypeBien();
@@ -36,8 +34,9 @@ public class TypeBienServiceImpl implements TypeBienService {
     }
 
     @Override
-    public void deleteTypeBien(TypeBienDTO typeBienDTO) {
-         typeBienRepository.deleteById(typeBienDTO.id());
+    public String deleteTypeBien(Long id) {
+         typeBienRepository.deleteById(id);
+         return "Type bien is deleted by successfully !";
     }
 
     @Override
@@ -55,6 +54,7 @@ public class TypeBienServiceImpl implements TypeBienService {
         return typeBienRepository.findAll()
             .stream()
             .map(tb-> new TypeBienDTO(tb.getId(), tb.getLibelle()))
-            .collect(Collectors.toList());
+            .toList();
     }
 }
+

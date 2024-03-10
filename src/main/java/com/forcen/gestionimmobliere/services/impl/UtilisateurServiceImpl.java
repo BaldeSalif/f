@@ -2,7 +2,6 @@ package com.forcen.gestionimmobliere.services.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService{
 
-    UtilisateurRepository utilisateurRepository;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Override
     public UtilisateurDTO saveUtilisateur(UtilisateurDTO utilisateurDTO) {
@@ -28,11 +27,13 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         utilisateur.setTelephone(utilisateurDTO.telephone());
 
         Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
-        return new UtilisateurDTO(savedUtilisateur.getId(),
-                                savedUtilisateur.getPrenom(), 
-                                savedUtilisateur.getNom(),
-                                savedUtilisateur.getAdresse(),
-                                savedUtilisateur.getTelephone());
+        return new UtilisateurDTO(
+                savedUtilisateur.getId(),
+                savedUtilisateur.getPrenom(),
+                savedUtilisateur.getNom(),
+                savedUtilisateur.getAdresse(),
+                savedUtilisateur.getTelephone()
+        );
     }
 
     @Override
@@ -46,16 +47,19 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             .build();
             
         Utilisateur updatedUtilisateur = utilisateurRepository.save(utilisateur);
-        return  new UtilisateurDTO(updatedUtilisateur.getId(),
-                                   updatedUtilisateur.getPrenom(),
-                                   updatedUtilisateur.getNom(),
-                                   updatedUtilisateur.getAdresse(),
-                                   updatedUtilisateur.getTelephone());
+        return  new UtilisateurDTO(
+                updatedUtilisateur.getId(),
+                updatedUtilisateur.getPrenom(),
+                updatedUtilisateur.getNom(),
+                updatedUtilisateur.getAdresse(),
+                updatedUtilisateur.getTelephone()
+        );
     }
     
     @Override
-    public void deleteUtilisateur(UtilisateurDTO utilisateurDTO) {
-         utilisateurRepository.deleteById(utilisateurDTO.id());
+    public String deleteUtilisateur(Long id) {
+         utilisateurRepository.deleteById(id);
+         return "User is deleted by successfully !";
     }
 
     @Override
@@ -63,11 +67,14 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(id);
         if(optionalUtilisateur.isPresent()){
             Utilisateur utilisateur = optionalUtilisateur.get();
-            return new UtilisateurDTO(utilisateur.getId(), 
-                                    utilisateur.getPrenom(),
-                                    utilisateur.getNom(),
-                                    utilisateur.getAdresse(),
-                                    utilisateur.getTelephone());}
+            return new UtilisateurDTO(
+                    utilisateur.getId(),
+                    utilisateur.getPrenom(),
+                    utilisateur.getNom(),
+                    utilisateur.getAdresse(),
+                    utilisateur.getTelephone()
+            );
+        }
         return null;
     }
 
@@ -75,11 +82,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     public List<UtilisateurDTO> findAll(){
         return utilisateurRepository.findAll()
             .stream()
-            .map(tb-> new UtilisateurDTO(tb.getId(), 
-                                         tb.getPrenom(), 
-                                         tb.getNom(), 
-                                         tb.getAdresse(), 
-                                         tb.getTelephone()))
-            .collect(Collectors.toList());
+            .map(tb-> new UtilisateurDTO(tb.getId(), tb.getPrenom(), tb.getNom(), tb.getAdresse(), tb.getTelephone()))
+                .toList();
     }
 }

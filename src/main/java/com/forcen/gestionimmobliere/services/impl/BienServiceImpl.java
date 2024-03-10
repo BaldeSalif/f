@@ -2,7 +2,6 @@ package com.forcen.gestionimmobliere.services.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,6 @@ public class BienServiceImpl implements BienService{
         bien.setAddress(bienDTO.adresse());
         bien.setDescription(bienDTO.description());
         bien.setPrix(bienDTO.prix());
-
         Bien savedBien = bienRepository.save(bien);
         return new BienDTO(savedBien.getId(),savedBien.getNom(), savedBien.getAddress(), savedBien.getDescription(), savedBien.getPrix());
     }
@@ -39,7 +37,6 @@ public class BienServiceImpl implements BienService{
       .description(bienDTO.description())
       .prix(bienDTO.prix())
       .build();
-      
       Bien updatedBien = bienRepository.save(bien);
       return new BienDTO(updatedBien.getId(), updatedBien.getNom(), updatedBien.getAddress(), updatedBien.getDescription(), updatedBien.getPrix());
     }
@@ -66,7 +63,6 @@ public class BienServiceImpl implements BienService{
             .map(tb-> new BienDTO(tb.getId(), tb.getNom(), tb.getAddress(), tb.getDescription(), tb.getPrix()))
             .toList();
     }
-        
-        
+
 }
        
