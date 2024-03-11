@@ -8,7 +8,7 @@ public interface CategorieService {
     public CategorieDTO saveCategorie(CategorieDTO categorieDTO);
    
     CategorieDTO updateCategorie(CategorieDTO categorieDTO);
-    void deleteCategorie(CategorieDTO categorieDTO);
+    String deleteCategorie(Long id);
     CategorieDTO findById(Long id);
    
     List<CategorieDTO> findAll();

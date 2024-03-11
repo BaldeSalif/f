@@ -8,7 +8,7 @@ public interface UtilisateurService {
     public UtilisateurDTO saveUtilisateur(UtilisateurDTO utilisateurDTO);
     
     UtilisateurDTO updateUtilisateur(UtilisateurDTO utilisateurDTO);
-    void deleteUtilisateur(UtilisateurDTO utilisateurDTO);
+    String deleteUtilisateur(Long id);
     UtilisateurDTO findById(Long id);
     
     List<UtilisateurDTO> findAll();

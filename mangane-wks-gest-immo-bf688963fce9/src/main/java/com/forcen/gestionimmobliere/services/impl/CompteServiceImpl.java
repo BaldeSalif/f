@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class CompteServiceImpl implements CompteService{
-    CompteRepository compteRepository;
+    public CompteRepository compteRepository;
 
     @Override
     public CompteDTO saveCompte(CompteDTO compteDTO){
@@ -25,6 +25,7 @@ public class CompteServiceImpl implements CompteService{
         return new CompteDTO(savedCompte.getId(), savedCompte.getEmail(), savedCompte.getPwd());
     }
 
+    @SuppressWarnings("null")
     @Override
     public CompteDTO updateCompte(CompteDTO compteDTO){
         Compte compte = Compte.builder()
@@ -37,11 +38,7 @@ public class CompteServiceImpl implements CompteService{
         return new CompteDTO(updatedCompte.getId(), updatedCompte.getEmail(), updatedCompte.getPwd());
     }
 
-    @Override
-    public void deleteCompte(CompteDTO compteDTO) {
-        compteRepository.deleteById(compteDTO.id());
-    }
-
+    @SuppressWarnings("null")
     @Override
     public CompteDTO findById(Long id){
         Optional<Compte> optionalCompte = compteRepository.findById(id);
@@ -60,6 +57,11 @@ public class CompteServiceImpl implements CompteService{
         .map(tb -> new CompteDTO(tb.getId(), tb.getEmail(), tb.getPwd()))
         .collect(Collectors.toList());
         
+    }
+
+    @Override
+    public String deleteCompte(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteCompte'");
     }
 }
             

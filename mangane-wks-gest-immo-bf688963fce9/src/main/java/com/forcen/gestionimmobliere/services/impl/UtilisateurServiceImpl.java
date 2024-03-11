@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService{
 
-    UtilisateurRepository utilisateurRepository;
+    public UtilisateurRepository utilisateurRepository;
 
     @Override
     public UtilisateurDTO saveUtilisateur(UtilisateurDTO utilisateurDTO) {
@@ -35,6 +35,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
                                 savedUtilisateur.getTelephone());
     }
 
+    @SuppressWarnings("null")
     @Override
     public UtilisateurDTO updateUtilisateur(UtilisateurDTO utilisateurDTO) {
         Utilisateur utilisateur = Utilisateur.builder()
@@ -53,11 +54,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
                                    updatedUtilisateur.getTelephone());
     }
     
-    @Override
-    public void deleteUtilisateur(UtilisateurDTO utilisateurDTO) {
-         utilisateurRepository.deleteById(utilisateurDTO.id());
-    }
-
+    @SuppressWarnings("null")
     @Override
     public UtilisateurDTO findById(Long id) {
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(id);
@@ -81,5 +78,11 @@ public class UtilisateurServiceImpl implements UtilisateurService{
                                          tb.getAdresse(), 
                                          tb.getTelephone()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteUtilisateur(Long id) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'deleteUtilisateur'");
     }
 }

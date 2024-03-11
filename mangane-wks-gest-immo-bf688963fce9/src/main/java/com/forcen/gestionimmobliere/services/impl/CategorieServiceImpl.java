@@ -10,7 +10,7 @@ import com.forcen.gestionimmobliere.services.CategorieService;
 import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
 
 public class CategorieServiceImpl implements CategorieService {
-    CategorieRepository categorieRepository;
+    public CategorieRepository categorieRepository;
     @Override
     public CategorieDTO saveCategorie(CategorieDTO categorieDTO) {
         Categorie categorie = new Categorie();
@@ -20,6 +20,7 @@ public class CategorieServiceImpl implements CategorieService {
         return new CategorieDTO(savedCategorie.getId(),savedCategorie.getLibelle());
     }
 
+    @SuppressWarnings("null")
     @Override
     public CategorieDTO updateCategorie(CategorieDTO categorieDTO){
       Categorie categorie = Categorie.builder()
@@ -31,12 +32,8 @@ public class CategorieServiceImpl implements CategorieService {
       return new CategorieDTO(updatedCategorie.getId(), updatedCategorie.getLibelle());
     }
 
+    @SuppressWarnings("null")
     @Override
-    public void deleteCategorie(CategorieDTO categorieDTO) {
-        categorieRepository.deleteById(categorieDTO.id());
-    }
-
-     @Override
     public CategorieDTO findById(Long id) {
         Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
         if(optionalCategorie.isPresent()){
@@ -52,5 +49,10 @@ public class CategorieServiceImpl implements CategorieService {
             .stream()
             .map(tb-> new CategorieDTO(tb.getId(), tb.getLibelle()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteCategorie(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteCategorie'");
     }
 }

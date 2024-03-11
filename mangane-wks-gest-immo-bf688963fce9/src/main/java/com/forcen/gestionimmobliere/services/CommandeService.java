@@ -7,7 +7,7 @@ public interface CommandeService {
     public CommandeDTO saveCommande(CommandeDTO commandeDTO);
    
     CommandeDTO updateCommande(CommandeDTO commandeDTO);
-    void deleteCommande(CommandeDTO commandeDTO);
+    String deleteCommande(Long id);
     CommandeDTO findById(Long id);
    
     List<CommandeDTO> findAll();
