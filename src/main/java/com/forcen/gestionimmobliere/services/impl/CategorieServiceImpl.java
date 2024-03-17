@@ -10,7 +10,7 @@ import com.forcen.gestionimmobliere.services.CategorieService;
 import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
 
 public class CategorieServiceImpl implements CategorieService {
-    CategorieRepository categorieRepository;
+    private CategorieRepository categorieRepository;
     @Override
     public CategorieDTO saveCategorie(CategorieDTO categorieDTO) {
         Categorie categorie = new Categorie();

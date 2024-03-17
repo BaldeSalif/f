@@ -17,9 +17,12 @@ public class Compte implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String email;
+
     private  String pwd;
+
     @OneToOne
-    @JoinColumn(nullable = true)
+    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 }

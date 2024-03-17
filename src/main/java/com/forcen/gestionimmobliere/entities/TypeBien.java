@@ -1,6 +1,7 @@
 package com.forcen.gestionimmobliere.entities;
 
 
+import com.forcen.gestionimmobliere.enums.TypeBienLabel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,8 @@ public class TypeBien implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-    private String libelle;
+
+    private TypeBienLabel typeBienLabel;
 
     @OneToMany(mappedBy = "typeBien", fetch = FetchType.LAZY)
     private List<Bien> biens;

@@ -15,8 +15,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-
 public class Categorie implements Serializable {
 
     @Id
@@ -26,7 +24,6 @@ public class Categorie implements Serializable {
 
     @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
     private List<Bien> bien;
-
 
 }
 

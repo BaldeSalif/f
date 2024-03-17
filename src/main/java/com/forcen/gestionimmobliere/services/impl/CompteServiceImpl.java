@@ -32,7 +32,6 @@ public class CompteServiceImpl implements CompteService{
         .email(compteDTO.email())
         .pwd(compteDTO.pwd())
         .build();
-
         Compte updatedCompte = compteRepository.save(compte);
         return new CompteDTO(updatedCompte.getId(), updatedCompte.getEmail(), updatedCompte.getPwd());
     }

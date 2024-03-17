@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/typebiens")
 @AllArgsConstructor
 @CrossOrigin("*")
+@RequestMapping("/typebiens")
 public class TypeBienController {
     private TypeBienService typeBienService;
     @GetMapping("/hello")
@@ -31,7 +31,7 @@ public class TypeBienController {
     }
     @PutMapping("/{id}")
     public TypeBienDTO updateTypeBien(@PathVariable Long id, @RequestBody TypeBienDTO typeBienDTO){
-        return typeBienService.updateTypeBien(new TypeBienDTO(id,typeBienDTO.libelle()));
+        return typeBienService.updateTypeBien(new TypeBienDTO(id,typeBienDTO.typeBienLabel()));
     }
     @DeleteMapping("/{id}")
     public String deleteTypeBien(@PathVariable Long id){

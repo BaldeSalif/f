@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
+
 @Entity
 @Data
 @Builder
@@ -16,9 +16,13 @@ public class Profil  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String nom ;
+
+    private  String nom;
+
     @ManyToOne
     @JoinColumn(name = "idUtilisateur" , nullable = true, referencedColumnName = "id")
     private Utilisateur utilisateur;
 
+
 }
+

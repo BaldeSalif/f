@@ -18,19 +18,19 @@ public class TypeBienServiceImpl implements TypeBienService {
     @Override
     public TypeBienDTO saveTypeBien(TypeBienDTO typeBienDTO) {
         TypeBien typeBien = new TypeBien();
-        typeBien.setLibelle(typeBienDTO.libelle());
+        typeBien.setTypeBienLabel(typeBienDTO.typeBienLabel());
         TypeBien savedTypeBien = typeBienRepository.save(typeBien);
-        return new TypeBienDTO(savedTypeBien.getId(),savedTypeBien.getLibelle());
+        return new TypeBienDTO(savedTypeBien.getId(),savedTypeBien.getTypeBienLabel());
     }
 
     @Override
     public TypeBienDTO updateTypeBien(TypeBienDTO typeBienDTO) {
         TypeBien typeBien = TypeBien.builder().id(typeBienDTO.id())
-            .libelle(typeBienDTO.libelle())
+            .typeBienLabel(typeBienDTO.typeBienLabel())
             .build();
 
         TypeBien updatedTypeBien = typeBienRepository.save(typeBien);
-        return  new TypeBienDTO(updatedTypeBien.getId(),updatedTypeBien.getLibelle());
+        return  new TypeBienDTO(updatedTypeBien.getId(),updatedTypeBien.getTypeBienLabel());
     }
 
     @Override
@@ -44,7 +44,7 @@ public class TypeBienServiceImpl implements TypeBienService {
         Optional<TypeBien> optionalTypeBien = typeBienRepository.findById(id);
         if(optionalTypeBien.isPresent()){
             TypeBien typeBien = optionalTypeBien.get();
-            return new TypeBienDTO(typeBien.getId(), typeBien.getLibelle());
+            return new TypeBienDTO(typeBien.getId(), typeBien.getTypeBienLabel());
         }
         return null;
     }
@@ -53,7 +53,7 @@ public class TypeBienServiceImpl implements TypeBienService {
     public List<TypeBienDTO> findAll(){
         return typeBienRepository.findAll()
             .stream()
-            .map(tb-> new TypeBienDTO(tb.getId(), tb.getLibelle()))
+            .map(tb-> new TypeBienDTO(tb.getId(), tb.getTypeBienLabel()))
             .toList();
     }
 }

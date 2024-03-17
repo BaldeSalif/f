@@ -16,10 +16,13 @@ import java.util.Date;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class Commande  implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Date dateComm;
+
     private Etat etat;
 
     @ManyToOne
