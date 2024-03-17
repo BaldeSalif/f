@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CommandeServiceImpl implements CommandeService{
     
-    CommandeRepository commandeRepository;
+    public CommandeRepository commandeRepository;
 
     @Override
     public CommandeDTO saveCommande(CommandeDTO commandeDTO){
@@ -30,6 +30,7 @@ public class CommandeServiceImpl implements CommandeService{
     }
     
 
+    @SuppressWarnings("null")
     @Override
     public CommandeDTO updateCommande(CommandeDTO commandeDTO) {
         Commande commande = Commande.builder().id(commandeDTO.id())
@@ -41,11 +42,7 @@ public class CommandeServiceImpl implements CommandeService{
         return  new CommandeDTO(updatedCommande.getId(),(Date) updatedCommande.getDateComm(), updatedCommande.getEtat());
     }
 
-    @Override
-    public void deleteCommande(CommandeDTO commandeDTO) {
-         commandeRepository.deleteById(commandeDTO.id());
-    }
-
+    @SuppressWarnings("null")
     @Override
     public CommandeDTO findById(Long id) {
         Optional<Commande> optionalCommande =commandeRepository.findById(id);
@@ -62,5 +59,11 @@ public class CommandeServiceImpl implements CommandeService{
             .stream()
             .map(tb-> new CommandeDTO(tb.getId(), (Date) tb.getDateComm(), tb.getEtat()))
             .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public String deleteCommande(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteCommande'");
     }
 }

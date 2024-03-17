@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ProfilServiceImpl implements ProfilService{
 
- ProfilRepository profilRepository;
+ public ProfilRepository profilRepository;
 
     @Override
     public ProfilDTO saveProfil(ProfilDTO profilDTO) {
@@ -27,6 +27,7 @@ public class ProfilServiceImpl implements ProfilService{
         return new ProfilDTO(savedProfil.getId(),savedProfil.getNom());
     }
 
+    @SuppressWarnings("null")
     @Override
     public ProfilDTO updateProfil(ProfilDTO profilDTO) {
         Profil profil = Profil.builder().id(profilDTO.id())
@@ -37,11 +38,7 @@ public class ProfilServiceImpl implements ProfilService{
         return  new ProfilDTO(updatedProfil.getId(),updatedProfil.getNom());
     }
 
-    @Override
-    public void deleteProfil(ProfilDTO profilDTO) {
-         profilRepository.deleteById(profilDTO.id());
-    }
-
+    @SuppressWarnings("null")
     @Override
     public ProfilDTO findById(Long id) {
         Optional<Profil> optionalProfil = profilRepository.findById(id);
@@ -58,6 +55,11 @@ public class ProfilServiceImpl implements ProfilService{
             .stream()
             .map(tb-> new ProfilDTO(tb.getId(), tb.getNom()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteProfil(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteProfil'");
     }
     
 }

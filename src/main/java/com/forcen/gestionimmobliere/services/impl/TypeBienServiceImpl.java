@@ -23,6 +23,7 @@ public class TypeBienServiceImpl implements TypeBienService {
         return new TypeBienDTO(savedTypeBien.getId(),savedTypeBien.getLibelle());
     }
 
+    @SuppressWarnings("null")
     @Override
     public TypeBienDTO updateTypeBien(TypeBienDTO typeBienDTO) {
         TypeBien typeBien = TypeBien.builder().id(typeBienDTO.id())
@@ -33,12 +34,14 @@ public class TypeBienServiceImpl implements TypeBienService {
         return  new TypeBienDTO(updatedTypeBien.getId(),updatedTypeBien.getLibelle());
     }
 
+    @SuppressWarnings("null")
     @Override
     public String deleteTypeBien(Long id) {
          typeBienRepository.deleteById(id);
          return "Type bien is deleted by successfully !";
     }
 
+    @SuppressWarnings("null")
     @Override
     public TypeBienDTO findById(Long id) {
         Optional<TypeBien> optionalTypeBien = typeBienRepository.findById(id);
