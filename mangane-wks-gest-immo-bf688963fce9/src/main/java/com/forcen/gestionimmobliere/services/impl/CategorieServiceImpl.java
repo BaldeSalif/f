@@ -9,6 +9,7 @@ import com.forcen.gestionimmobliere.repository.CategorieRepository;
 import com.forcen.gestionimmobliere.services.CategorieService;
 import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
 
+// Ajoutes @Service ici
 public class CategorieServiceImpl implements CategorieService {
     public CategorieRepository categorieRepository;
     @Override
@@ -53,6 +54,10 @@ public class CategorieServiceImpl implements CategorieService {
 
     @Override
     public String deleteCategorie(Long id) {
+        // Remplace la ligne 61 par les deux lignes suivantes :
+        // categorieRepository.deleteById(id);
+        // return "Catégorie supprimé avec succès";
+        
         throw new UnsupportedOperationException("Unimplemented method 'deleteCategorie'");
     }
 }
