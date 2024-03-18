@@ -30,9 +30,6 @@ public class Bien  implements Serializable {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne
-    @JoinColumn(name = "idcategorie" , nullable = true,referencedColumnName = "id")
-    private  Categorie categorie;
 
     @ManyToOne
     @JoinColumn(name = "idTypeBien" , nullable = true,referencedColumnName = "id")

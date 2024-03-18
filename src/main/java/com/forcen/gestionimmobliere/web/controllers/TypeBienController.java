@@ -13,10 +13,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class TypeBienController {
     private TypeBienService typeBienService;
-    @GetMapping("/hello")
-    public String text(){
-        return "hello";
-    }
+    
     @GetMapping("/")
     public List<TypeBienDTO> getAllTypeBien(){
         return typeBienService.findAll();

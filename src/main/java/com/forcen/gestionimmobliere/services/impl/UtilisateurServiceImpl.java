@@ -12,15 +12,12 @@ import com.forcen.gestionimmobliere.web.dtos.UtilisateurDTO;
 
 import lombok.AllArgsConstructor;
 
+@SuppressWarnings("null")
 @Service
 @AllArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService{
 
-<<<<<<< HEAD:src/main/java/com/forcen/gestionimmobliere/services/impl/UtilisateurServiceImpl.java
-    private final UtilisateurRepository utilisateurRepository;
-=======
     public UtilisateurRepository utilisateurRepository;
->>>>>>> d9fabef370e300d077a6c36b90cf0ec9b705db27:mangane-wks-gest-immo-bf688963fce9/src/main/java/com/forcen/gestionimmobliere/services/impl/UtilisateurServiceImpl.java
 
     @Override
     public UtilisateurDTO saveUtilisateur(UtilisateurDTO utilisateurDTO) {
@@ -40,7 +37,6 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         );
     }
 
-    @SuppressWarnings("null")
     @Override
     public UtilisateurDTO updateUtilisateur(UtilisateurDTO utilisateurDTO) {
         Utilisateur utilisateur = Utilisateur.builder()
@@ -61,16 +57,12 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         );
     }
     
-<<<<<<< HEAD:src/main/java/com/forcen/gestionimmobliere/services/impl/UtilisateurServiceImpl.java
     @Override
     public String deleteUtilisateur(Long id) {
          utilisateurRepository.deleteById(id);
          return "User is deleted by successfully !";
     }
 
-=======
-    @SuppressWarnings("null")
->>>>>>> d9fabef370e300d077a6c36b90cf0ec9b705db27:mangane-wks-gest-immo-bf688963fce9/src/main/java/com/forcen/gestionimmobliere/services/impl/UtilisateurServiceImpl.java
     @Override
     public UtilisateurDTO findById(Long id) {
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(id);
@@ -95,9 +87,4 @@ public class UtilisateurServiceImpl implements UtilisateurService{
                 .toList();
     }
 
-    @Override
-    public String deleteUtilisateur(Long id) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUtilisateur'");
-    }
 }

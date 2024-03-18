@@ -44,8 +44,9 @@ public class BienServiceImpl implements BienService{
 
     @SuppressWarnings("null")
     @Override
-    public void deleteBien(BienDTO bienDTO) {
-        bienRepository.deleteById(bienDTO.id());
+    public String deleteBien(Long id) {
+        bienRepository.deleteById(id);
+        return "Le bien a été supprimé";
     }
 
      @SuppressWarnings("null")
@@ -66,6 +67,7 @@ public class BienServiceImpl implements BienService{
             .map(tb-> new BienDTO(tb.getId(), tb.getNom(), tb.getAddress(), tb.getDescription(), tb.getPrix()))
             .toList();
     }
+
 
 }
        
