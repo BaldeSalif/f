@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/categorie")
 public class CategorieController {
+    // Enlève le mot clé 'private' ici et laisse comme ça
     private CategorieService categorieService;
 
     @PostMapping("/create")
