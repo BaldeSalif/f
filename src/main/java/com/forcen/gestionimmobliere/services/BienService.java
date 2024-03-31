@@ -9,9 +9,7 @@ public interface BienService {
      public BienDTO saveBien(BienDTO bienDTO);
 
      BienDTO updateBien(BienDTO bienDTO);
-
-     void deleteBien(BienDTO bienDTO);
-
+     String deleteBien(Long id);
      BienDTO findById(Long id);
 
      List<BienDTO> findAll();

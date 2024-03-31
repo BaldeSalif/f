@@ -1,6 +1,6 @@
 package com.forcen.gestionimmobliere.web.controllers;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 

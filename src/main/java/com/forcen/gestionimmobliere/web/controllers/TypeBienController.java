@@ -8,15 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/typebiens")
 @AllArgsConstructor
 @CrossOrigin("*")
-@RequestMapping("/typebiens")
 public class TypeBienController {
     private TypeBienService typeBienService;
-    @GetMapping("/hello")
-    public String text(){
-        return "hello";
-    }
+
     @GetMapping
     public List<TypeBienDTO> getAllTypeBien(){
         return typeBienService.findAll();
