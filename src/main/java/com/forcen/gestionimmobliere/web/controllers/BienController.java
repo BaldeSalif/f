@@ -43,8 +43,8 @@ public class BienController {
                                                     bienDTO.prix()));
     }
 
-    @DeleteMapping("/")
-    public void deleteBien(@RequestBody BienDTO bienDTO){
-         bienService.deleteBien(bienDTO);
+    @DeleteMapping("/{id}")
+    public void deleteBien(@RequestParam Long id){
+         bienService.deleteBien(id);
     }
 }
