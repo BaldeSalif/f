@@ -12,6 +12,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/users")
 public class UtilisateurController {
+
     private UtilisateurService utilisateurService;
 
     @PostMapping("/create")

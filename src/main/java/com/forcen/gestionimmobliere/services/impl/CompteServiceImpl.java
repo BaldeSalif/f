@@ -7,13 +7,12 @@ import com.forcen.gestionimmobliere.entities.Compte;
 import com.forcen.gestionimmobliere.repository.CompteRepository;
 import com.forcen.gestionimmobliere.services.CompteService;
 import com.forcen.gestionimmobliere.web.dtos.CompteDTO;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class CompteServiceImpl implements CompteService{
-    CompteRepository compteRepository;
+    private CompteRepository compteRepository;
 
     @Override
     public CompteDTO saveCompte(CompteDTO compteDTO){
@@ -25,6 +24,7 @@ public class CompteServiceImpl implements CompteService{
         return new CompteDTO(savedCompte.getId(), savedCompte.getEmail(), savedCompte.getPwd());
     }
 
+    @SuppressWarnings("null")
     @Override
     public CompteDTO updateCompte(CompteDTO compteDTO){
         Compte compte = Compte.builder()
@@ -36,11 +36,7 @@ public class CompteServiceImpl implements CompteService{
         return new CompteDTO(updatedCompte.getId(), updatedCompte.getEmail(), updatedCompte.getPwd());
     }
 
-    @Override
-    public void deleteCompte(CompteDTO compteDTO) {
-        compteRepository.deleteById(compteDTO.id());
-    }
-
+    @SuppressWarnings("null")
     @Override
     public CompteDTO findById(Long id){
         Optional<Compte> optionalCompte = compteRepository.findById(id);
@@ -57,8 +53,13 @@ public class CompteServiceImpl implements CompteService{
         return compteRepository.findAll()
         .stream()
         .map(tb -> new CompteDTO(tb.getId(), tb.getEmail(), tb.getPwd()))
-        .collect(Collectors.toList());
+        .toList();
         
+    }
+
+    @Override
+    public String deleteCompte(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteCompte'");
     }
 }
             

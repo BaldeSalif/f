@@ -29,6 +29,7 @@ public class BienServiceImpl implements BienService{
         return new BienDTO(savedBien.getId(),savedBien.getNom(), savedBien.getAddress(), savedBien.getDescription(), savedBien.getPrix());
     }
 
+    @SuppressWarnings("null")
     @Override
     public BienDTO updateBien(BienDTO bienDTO){
       Bien bien = Bien.builder().id(bienDTO.id())
@@ -41,12 +42,14 @@ public class BienServiceImpl implements BienService{
       return new BienDTO(updatedBien.getId(), updatedBien.getNom(), updatedBien.getAddress(), updatedBien.getDescription(), updatedBien.getPrix());
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteBien(BienDTO bienDTO) {
         bienRepository.deleteById(bienDTO.id());
     }
 
-     @Override
+     @SuppressWarnings("null")
+    @Override
     public BienDTO findById(Long id) {
         Optional<Bien> optionalBien = bienRepository.findById(id);
         if(optionalBien.isPresent()){

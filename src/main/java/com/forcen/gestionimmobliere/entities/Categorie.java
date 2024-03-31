@@ -20,9 +20,10 @@ public class Categorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String libelle;
 
-    @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categorieId", fetch = FetchType.LAZY)
     private List<Bien> bien;
 
 }

@@ -2,15 +2,14 @@ package com.forcen.gestionimmobliere.entities;
 
 import com.forcen.gestionimmobliere.enums.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,12 +30,13 @@ public class Bien  implements Serializable {
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "idcategorie" , nullable = true,referencedColumnName = "id")
-    private  Categorie categorie;
+    @JoinColumn(name = "categorie_id" , nullable = true, referencedColumnName = "id")
+    private  Categorie categorieId;
 
     @ManyToOne
-    @JoinColumn(name = "idTypeBien" , nullable = true,referencedColumnName = "id")
-    private  TypeBien typeBien;
+    @JoinColumn(name = "typeBien_id" , nullable = true, referencedColumnName = "id")
+    private  TypeBien typeBienId;
 
-
+    @OneToMany(mappedBy = "bienId", cascade = CascadeType.ALL)
+    private List<Image> imagesBien;
 }

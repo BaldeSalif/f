@@ -2,20 +2,24 @@ package com.forcen.gestionimmobliere.services.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.forcen.gestionimmobliere.entities.Categorie;
 import com.forcen.gestionimmobliere.repository.CategorieRepository;
 import com.forcen.gestionimmobliere.services.CategorieService;
 import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
+@Service
 public class CategorieServiceImpl implements CategorieService {
+
     private CategorieRepository categorieRepository;
     @Override
     public CategorieDTO saveCategorie(CategorieDTO categorieDTO) {
-        Categorie categorie = new Categorie();
-        categorie.setLibelle(categorieDTO.libelle());
-       
+        Categorie categorie = Categorie.builder()
+                .libelle(categorieDTO.libelle())
+                .build();
         Categorie savedCategorie = categorieRepository.save(categorie);
         return new CategorieDTO(savedCategorie.getId(),savedCategorie.getLibelle());
     }
@@ -26,14 +30,14 @@ public class CategorieServiceImpl implements CategorieService {
       .id(categorieDTO.id())
       .libelle(categorieDTO.libelle())
       .build();
-      
-     Categorie updatedCategorie = categorieRepository.save(categorie);
+      Categorie updatedCategorie = categorieRepository.save(categorie);
       return new CategorieDTO(updatedCategorie.getId(), updatedCategorie.getLibelle());
     }
 
     @Override
-    public void deleteCategorie(CategorieDTO categorieDTO) {
-        categorieRepository.deleteById(categorieDTO.id());
+    public String deleteCategorie(Long id) {
+        categorieRepository.deleteById(id);
+        return "Category deleted by successfully";
     }
 
      @Override
@@ -51,6 +55,6 @@ public class CategorieServiceImpl implements CategorieService {
         return categorieRepository.findAll()
             .stream()
             .map(tb-> new CategorieDTO(tb.getId(), tb.getLibelle()))
-            .collect(Collectors.toList());
+            .toList();
     }
 }

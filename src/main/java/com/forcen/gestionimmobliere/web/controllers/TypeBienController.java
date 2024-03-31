@@ -17,7 +17,7 @@ public class TypeBienController {
     public String text(){
         return "hello";
     }
-    @GetMapping("/")
+    @GetMapping
     public List<TypeBienDTO> getAllTypeBien(){
         return typeBienService.findAll();
     }
@@ -25,7 +25,7 @@ public class TypeBienController {
     public  TypeBienDTO getTypeBien(@PathVariable Long id){
         return typeBienService.findById(id);
     }
-    @PostMapping("/")
+    @PostMapping
     public TypeBienDTO saveTypeBien( @RequestBody TypeBienDTO typeBienDTO){
         return typeBienService.saveTypeBien(typeBienDTO);
     }

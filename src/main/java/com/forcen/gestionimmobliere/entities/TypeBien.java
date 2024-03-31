@@ -24,6 +24,6 @@ public class TypeBien implements Serializable {
 
     private TypeBienLabel typeBienLabel;
 
-    @OneToMany(mappedBy = "typeBien", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "typeBienId", fetch = FetchType.LAZY)
     private List<Bien> biens;
 }

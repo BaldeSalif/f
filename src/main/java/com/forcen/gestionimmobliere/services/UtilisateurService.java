@@ -13,5 +13,5 @@ public interface UtilisateurService {
 
     public UtilisateurDTO findById(Long id);
     
-    public List<UtilisateurDTO> findAll();
+    List<UtilisateurDTO> findAll();
 }

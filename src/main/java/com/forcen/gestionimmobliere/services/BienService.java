@@ -9,7 +9,9 @@ public interface BienService {
      public BienDTO saveBien(BienDTO bienDTO);
 
      BienDTO updateBien(BienDTO bienDTO);
+
      void deleteBien(BienDTO bienDTO);
+
      BienDTO findById(Long id);
 
      List<BienDTO> findAll();

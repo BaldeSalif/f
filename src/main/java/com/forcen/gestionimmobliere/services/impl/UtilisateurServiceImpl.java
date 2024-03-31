@@ -2,6 +2,7 @@ package com.forcen.gestionimmobliere.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -27,13 +28,11 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         utilisateur.setTelephone(utilisateurDTO.telephone());
 
         Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
-        return new UtilisateurDTO(
-                savedUtilisateur.getId(),
-                savedUtilisateur.getPrenom(),
-                savedUtilisateur.getNom(),
-                savedUtilisateur.getAdresse(),
-                savedUtilisateur.getTelephone()
-        );
+        return new UtilisateurDTO(savedUtilisateur.getId(),
+                                savedUtilisateur.getPrenom(), 
+                                savedUtilisateur.getNom(),
+                                savedUtilisateur.getAdresse(),
+                                savedUtilisateur.getTelephone());
     }
 
     @Override
