@@ -1,5 +1,5 @@
 package com.forcen.gestionimmobliere.web.dtos;
 
-public record BienDTO(Long id, String nom, String adresse, String description, double prix) {
+import java.util.List;
 
-}
+public record BienDTO(Long id, String nom, String address, String description, double prix, List<ImageDTO> imagesBien) { }

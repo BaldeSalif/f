@@ -10,28 +10,28 @@ import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
+
 @Service
+@AllArgsConstructor
 public class CategorieServiceImpl implements CategorieService {
 
-    private CategorieRepository categorieRepository;
+    CategorieRepository categorieRepository;
+
     @Override
     public CategorieDTO saveCategorie(CategorieDTO categorieDTO) {
-        Categorie categorie = Categorie.builder()
-                .libelle(categorieDTO.libelle())
-                .build();
+        Categorie categorie = new Categorie();
+        categorie.setName(categorieDTO.name());
         Categorie savedCategorie = categorieRepository.save(categorie);
-        return new CategorieDTO(savedCategorie.getId(),savedCategorie.getLibelle());
+        return new CategorieDTO(savedCategorie.getId(),savedCategorie.getName());
     }
 
     @Override
     public CategorieDTO updateCategorie(CategorieDTO categorieDTO){
-      Categorie categorie = Categorie.builder()
-      .id(categorieDTO.id())
-      .libelle(categorieDTO.libelle())
-      .build();
+      Categorie categorie = new Categorie();
+      categorie.setId(categorieDTO.id());
+      categorie.setName(categorieDTO.name());
       Categorie updatedCategorie = categorieRepository.save(categorie);
-      return new CategorieDTO(updatedCategorie.getId(), updatedCategorie.getLibelle());
+      return new CategorieDTO(updatedCategorie.getId(), updatedCategorie.getName());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class CategorieServiceImpl implements CategorieService {
         Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
         if(optionalCategorie.isPresent()){
             Categorie categorie = optionalCategorie.get();
-            return new CategorieDTO(categorie.getId(), categorie.getLibelle());
+            return new CategorieDTO(categorie.getId(), categorie.getName());
         }
         return null;
     }
@@ -54,7 +54,7 @@ public class CategorieServiceImpl implements CategorieService {
     public List<CategorieDTO> findAll(){
         return categorieRepository.findAll()
             .stream()
-            .map(tb-> new CategorieDTO(tb.getId(), tb.getLibelle()))
+            .map(tb-> new CategorieDTO(tb.getId(), tb.getName()))
             .toList();
     }
 }

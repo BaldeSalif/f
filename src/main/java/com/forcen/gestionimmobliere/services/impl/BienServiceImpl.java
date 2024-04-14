@@ -3,6 +3,10 @@ package com.forcen.gestionimmobliere.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.forcen.gestionimmobliere.entities.Image;
+import com.forcen.gestionimmobliere.repository.ImageRepository;
+import com.forcen.gestionimmobliere.web.dtos.ImageDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.forcen.gestionimmobliere.entities.Bien;
@@ -17,57 +21,88 @@ import lombok.AllArgsConstructor;
 public class BienServiceImpl implements BienService{
     
     BienRepository bienRepository;
-    
+    ImageRepository imageRepository;
+    @Transactional
     @Override
     public BienDTO saveBien(BienDTO bienDTO) {
         Bien bien = new Bien();
         bien.setNom(bienDTO.nom());
-        bien.setAddress(bienDTO.adresse());
+        bien.setAddress(bienDTO.address());
         bien.setDescription(bienDTO.description());
         bien.setPrix(bienDTO.prix());
         Bien savedBien = bienRepository.save(bien);
-        return new BienDTO(savedBien.getId(),savedBien.getNom(), savedBien.getAddress(), savedBien.getDescription(), savedBien.getPrix());
+        if (bienDTO.imagesBien() != null){
+            bienDTO.imagesBien().stream().forEach(img -> {
+                Image image = new Image();
+                image.setName(img.name());
+                image.setImageData(img.imageData());
+                image.setBienId(savedBien);
+                imageRepository.save(image);
+            });
+        }
+        return bienMapper(savedBien);
     }
 
-    @SuppressWarnings("null")
     @Override
     public BienDTO updateBien(BienDTO bienDTO){
       Bien bien = Bien.builder().id(bienDTO.id())
       .nom(bienDTO.nom())
-      .address(bienDTO.adresse())
+      .address(bienDTO.address())
       .description(bienDTO.description())
       .prix(bienDTO.prix())
       .build();
       Bien updatedBien = bienRepository.save(bien);
-      return new BienDTO(updatedBien.getId(), updatedBien.getNom(), updatedBien.getAddress(), updatedBien.getDescription(), updatedBien.getPrix());
+      return bienMapper(updatedBien);
     }
 
-    @SuppressWarnings("null")
     @Override
     public String deleteBien(Long id) {
         bienRepository.deleteById(id);
         return "Le bien a été supprimé";
     }
 
-     @SuppressWarnings("null")
     @Override
     public BienDTO findById(Long id) {
         Optional<Bien> optionalBien = bienRepository.findById(id);
         if(optionalBien.isPresent()){
             Bien bien = optionalBien.get();
-            return new BienDTO(bien.getId(), bien.getNom(), bien.getAddress(), bien.getDescription(), bien.getPrix());
+            return bienMapper(bien);
         }
         return null;
     }
 
     @Override
     public List<BienDTO> findAll(){
-        return bienRepository.findAll()
-            .stream()
-            .map(tb-> new BienDTO(tb.getId(), tb.getNom(), tb.getAddress(), tb.getDescription(), tb.getPrix()))
-            .toList();
+        List<Bien> biens = bienRepository.findAll();
+        return bienListMapper(biens);
     }
 
+    public List<BienDTO> bienListMapper(List<Bien> biens){
+        return biens.stream()
+                .map(bien -> new BienDTO(
+                        bien.getId(),
+                        bien.getNom(),
+                        bien.getAddress(),
+                        bien.getDescription(),
+                        bien.getPrix(),
+                        bien.getImagesBien().stream()
+                                .map(image -> new ImageDTO(image.getId(), image.getName(), image.getImageData()))
+                                .toList()))
+                .toList();
+    }
+
+    public BienDTO bienMapper(Bien bien){
+        return new BienDTO(
+                bien.getId(),
+                bien.getNom(),
+                bien.getAddress(),
+                bien.getDescription(),
+                bien.getPrix(),
+                bien.getImagesBien() != null ? bien.getImagesBien().stream()
+                        .map(image -> new ImageDTO(image.getId(), image.getName(), image.getImageData()))
+                        .toList() : null
+        );
+    }
 
 }
        

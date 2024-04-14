@@ -2,17 +2,18 @@ package com.forcen.gestionimmobliere.web.controllers;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.forcen.gestionimmobliere.services.CategorieService;
 import com.forcen.gestionimmobliere.web.dtos.CategorieDTO;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import lombok.AllArgsConstructor;
+
 
 @RestController
 @CrossOrigin("*")
-@AllArgsConstructor
 @RequestMapping("/categorie")
+@AllArgsConstructor
 public class CategorieController {
 
     private CategorieService categorieService;
@@ -34,7 +35,7 @@ public class CategorieController {
 
      @PutMapping("/update/{id}")
     public CategorieDTO updateCategorie(@PathVariable Long id, @RequestBody CategorieDTO categorieDTO){
-        return categorieService.updateCategorie(new CategorieDTO(id, categorieDTO.libelle())
+        return categorieService.updateCategorie(new CategorieDTO(id, categorieDTO.name())
         );
     }
     @DeleteMapping("delete/{id}")

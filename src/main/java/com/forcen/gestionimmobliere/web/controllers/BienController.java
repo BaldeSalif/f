@@ -1,5 +1,6 @@
 package com.forcen.gestionimmobliere.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -12,39 +13,40 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @CrossOrigin("*")
-@RequestMapping("/bien")
+@RequestMapping("/biens")
 public class BienController {
     private BienService bienService;
 
-        @GetMapping("/hello")
-        public String text(){
-            return "hello bien";
-        }
+    @GetMapping("/hello")
+    public String text(){
+        return "hello bien";
+    }
 
-        @GetMapping("/")
-        public List<BienDTO> getAllBien() {
-            return bienService.findAll();
-        }
-         @GetMapping("/{id}")
+    @GetMapping()
+    public List<BienDTO> getAllBien() {
+        return bienService.findAll();
+    }
+     @GetMapping("/{id}")
     public  BienDTO getBien(@PathVariable Long id){
         return bienService.findById(id);
     }
-    @PostMapping("/")
+    @PostMapping()
     public BienDTO saveBien( @RequestBody BienDTO bienDTO){
-        BienDTO savebienDTO = bienService.saveBien(bienDTO);
-        return savebienDTO;
+        return bienService.saveBien(bienDTO);
     }
     @PutMapping("/{id}")
     public BienDTO updateBien(@PathVariable Long id, @RequestBody BienDTO bienDTO){
         return bienService.updateBien(new BienDTO(id,
                                                     bienDTO.nom(),
-                                                    bienDTO.adresse(),
+                                                    bienDTO.address(),
                                                     bienDTO.description(),
-                                                    bienDTO.prix()));
+                                                    bienDTO.prix(),
+                                                    new ArrayList<>()
+                ));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBien(@RequestParam Long id){
+    public void deleteBien(@PathVariable Long id){
          bienService.deleteBien(id);
     }
 }

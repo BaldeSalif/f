@@ -1,2 +1,4 @@
 package com.forcen.gestionimmobliere.web.dtos;
-public record CategorieDTO(Long id, String libelle) {}
+public record CategorieDTO(Long id, String name) {
+
+}

@@ -39,4 +39,5 @@ public class Bien  implements Serializable {
 
     @OneToMany(mappedBy = "bienId", cascade = CascadeType.ALL)
     private List<Image> imagesBien;
+
 }
